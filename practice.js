@@ -85,8 +85,9 @@ Instead, console.log your whole backPack object and then check out the console. 
 //Now, loop through your object and alert every value. *Tyler --> 24 --> 6'0 --> Male, etc etc
 
   //Code Here
-
-  alert(Object.values(alsoMe));
+  for (var loop in alsoMe) {
+    alert(alsoMe[loop]);
+  }
 
 //NEXT PROBLEM
 
@@ -148,17 +149,20 @@ var user1 = {
 that each value is truthy. If it's not truthy, remove it from the object. */
 
   //Code Here
+  for (var key in user1) {
+    if (!(user1[key])) {
 
-for(var key in user1) {
-  if(user1[key] !== 0 || user1[key] !== null || user1[key] !== "undefined" || user1[key] !== false || user1[key] !== "NAN") {
-    temp.push(user1[key]);
+      delete user1[key];
+    }
   }
-};
 
-//Once you get your truthy Object, Change the remaining values in the object to be specific to you (name: 'your name', username: 'your username'), rather than my information.
+
+//Once you get your truthy Object, Change the remaining values in the object to be specific to you
+//(name: 'your name', username: 'your username'), rather than my information.
 
   //Code Here
-
+  user1.name = "Brobbie";
+  user1.username = "Brobbiethao";
 
 
 
@@ -183,12 +187,14 @@ var user2 = {
 
   //Code Here
 
+user2.name = "Tyler S. McGinnis";
+user2.email = "tyler.mcginnis@devmounta.in";
+
 //Now call the sayEmail method that's on the user object which will alert the users email
 
   //Code Here
 
-
-
+user2.sayEmail();
 
 //NEXT PROBLEM
 
@@ -196,8 +202,21 @@ var user2 = {
 
 
 //Create an empty object called methodCollection.
+var methodCollection = {
 
+
+};
   //Code Here
+methodCollection.alertHello = function () {
+  alert("hello");
+};
+
+
+
+methodCollection.logHello = function() {
+  console.log("hello");
+};
+
 
 /*Now add two methods (functions that are properties on objects) to your methodCollection
 object. One called 'alertHello' which alerts 'hello' and another method called logHello
@@ -219,6 +238,14 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 // parameters and returns a new object with all of the information that you passed in.
 
   //Code Here
+function makePerson(name, birthday, ssn) {
+  var demo = {
+  name: name,
+  birthday: birthday,
+  ssn: ssn
+  }
+  return demo;
+};
 
 
 
@@ -226,19 +253,41 @@ object. One called 'alertHello' which alerts 'hello' and another method called l
 
 
 
-// Create a function called makeCard which takes in cardNumber, expirationDate, and securityCode to make a Credit Card object and returns that object so that whenever you invoke makeCard, you get a brand new credit card.
+// Create a function called makeCard which takes in cardNumber, expirationDate, and
+//securityCode to make a Credit Card object and returns that object so that whenever
+//you invoke makeCard, you get a brand new credit card.
 
   //Code Here
-
+  function makeCard(cardNumber, expirationDate, securityCode) {
+    var object = {
+    cardNumber: "cardNumber",
+    expirationDate: "expirationDate",
+    securityCode: "securityCode"
+    }
+    return object;
+  };
 
 
 //NEXT PROBLEM
 
 
 
-/* As of this point you should have a makePerson and a makeCard function which returns you either a person or a credit card object.
-   Now, create a bindCard function that takes in a person object as its first parameter and a creditcard object as its second parameter.
-   Have bindCard merge the two parameters together into a new object which contains all the properties from the person as well as the creditcard. While Object.assign would give you the answer, specRunner requires an answer without using it.
+/* As of this point you should have a makePerson and a makeCard function which returns you either a person or a credit
+card object.
+   Now, create a bindCard function that takes in a person object as its first parameter and a creditcard object as its
+   second parameter.
+   Have bindCard merge the two parameters together into a new object which contains all the properties from the person
+   as well as the creditcard. While Object.assign would give you the answer, specRunner requires an answer without using it.
 */
 
   //Code Here
+  function bindCard(person, creditcard) {
+      var newObj = {};
+      for(var key in person) {
+        newObj[key] = person[key];
+      }
+      for(var key in creditcard) {
+        newObj[key] = creditcard[key];
+      }
+      return newObj;
+  };
